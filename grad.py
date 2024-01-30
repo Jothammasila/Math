@@ -4,6 +4,6 @@ class Grad:
         self.x = x
         self.n = n
         
-    def grad(self,k):
+    def grad(self):
         return self.a*(self.n*(self.x**(self.n-1)))
 
