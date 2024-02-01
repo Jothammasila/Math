@@ -1,4 +1,5 @@
 import math
+import numpy as np
 
 class NormalDistribution():
 
@@ -53,6 +54,34 @@ class ArithmeticMean:
         for i in range(len(self.X)):
             self.__x_sum += self.X[i]
         return self.__x_sum/len(self.X)
+
+
+class Gradient:
+    def __init__(self, X, coeff=1, powr=0) -> list:
+        self.X = np.array(X)
+        self.coeff = coeff
+        self.powr = powr
+    
+    def grad(self):
+        
+        if self.powr < 0:
+            # Check for zero elements in self.X
+            # np.isclose(self.X, 0) is used to create a boolean array indicating which elements of 
+            # self.X are close to zero. This information is then used to selectively apply the gradient 
+            # calculation only to the non-zero elements, preventing division by zero errors.
+            zero_elements = np.isclose(self.X, 0)
+            
+            # Calculate gradient only for non-zero elements
+            return self.coeff * self.powr * (1/self.X[~zero_elements] ** (np.abs(self.powr - 1)))
+            
+            
+        
+        elif self.powr == 0:
+            return np.zeros_like(self.X)
+        
+        else:
+            return self.coeff * self.powr * (self.X ** (self.powr - 1))
+
 
 
 
