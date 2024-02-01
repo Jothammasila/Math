@@ -36,7 +36,7 @@ class NormalDistribution():
         pass
 
 
-class Geometric:
+class GeometricMean:
     def __init__(self,data):
         self.data = data
         
@@ -81,8 +81,3 @@ class Gradient:
         
         else:
             return self.coeff * self.powr * (self.X ** (self.powr - 1))
-
-
-
-
-
