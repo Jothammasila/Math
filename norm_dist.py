@@ -44,5 +44,16 @@ class Geometric:
             pass
 
 
+class ArithmeticMean:
+    def __init__(self,X)->list:
+        self.__x_sum = 0
+        self.X = X
+        
+    def mean(self)->float:
+        for i in range(len(self.X)):
+            self.__x_sum += self.X[i]
+        return self.__x_sum/len(self.X)
+
+
 
 

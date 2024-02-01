@@ -6,4 +6,3 @@ class Grad:
         
     def grad(self):
         return self.a*(self.n*(self.x**(self.n-1)))
-
