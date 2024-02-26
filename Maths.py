@@ -1,20 +1,23 @@
-import math
+import collections
+import sys
+from functools import lru_cache
 import numpy as np
+from gmpy2 import gmpy2
+
 
 class NormalDistribution():
 
     def __init__(self) -> str:
         return print("This class implements Normal distribution in statistics and probality.\n")
-    
-    def z_score(self,x:int,mu:int,sigma: int)-> float:
-        self.z_score = (x-mu)/sigma
+
+    def z_score(self, x: int, mu: int, sigma: int) -> float:
+        self.z_score = (x - mu) / sigma
 
         if self.z_score < 0:
             return print(f'z-score is {self.z_score}. {x} is {self.z_score} steps from the mean {mu}.')
-        
+
         else:
             return print(f'z-score is {self.z_score}. {x} is {self.z_score} steps from the mean {mu}.')
-        
 
     def impericalRule(self):
         self.notes = """
@@ -31,53 +34,72 @@ class NormalDistribution():
         The empirical rule is also known as the 68-95-99.7 rule."""
 
         return print(self.notes)
-    
+
     def z_prob(self):
         pass
 
 
 class GeometricMean:
-    def __init__(self,data):
+    def __init__(self, data):
         self.data = data
-        
+
     def geometricMean(self):
         for num in self.data:
             pass
 
 
 class ArithmeticMean:
-    def __init__(self,X)->list:
+    def __init__(self, X) -> list:
         self.__x_sum = 0
         self.X = X
-        
-    def mean(self)->float:
+
+    def mean(self) -> float:
         for i in range(len(self.X)):
             self.__x_sum += self.X[i]
-        return self.__x_sum/len(self.X)
+        return self.__x_sum / len(self.X)
 
 
 class Gradient:
-    def __init__(self, X, coeff=1, powr=0) -> list:
+    def __init__(self, X, coeff=1, powr=0) -> collections:
         self.X = np.array(X)
         self.coeff = coeff
         self.powr = powr
-    
+
     def grad(self):
-        
+
         if self.powr < 0:
             # Check for zero elements in self.X
             # np.isclose(self.X, 0) is used to create a boolean array indicating which elements of 
             # self.X are close to zero. This information is then used to selectively apply the gradient 
             # calculation only to the non-zero elements, preventing division by zero errors.
             zero_elements = np.isclose(self.X, 0)
-            
+
             # Calculate gradient only for non-zero elements
-            return self.coeff * self.powr * (1/self.X[~zero_elements] ** (np.abs(self.powr - 1)))
-            
-            
-        
+            return self.coeff * self.powr * (1 / self.X[~zero_elements] ** (np.abs(self.powr - 1)))
+
+
         elif self.powr == 0:
             return np.zeros_like(self.X)
-        
+
         else:
             return self.coeff * self.powr * (self.X ** (self.powr - 1))
+
+
+class Combinatorics:
+
+    def factorial(self, n):
+        self.result = 1
+        self.n = n
+
+        if self.n < 0:
+            raise ValueError("Factorial is not defined for negative numbers.")
+
+        elif self.n == 0 or self.n == 1:
+            return self.result
+
+        else:
+            self.result = gmpy2.mpz(1)
+            for i in range(1, self.n + 1):
+                self.result *= i
+                return self.result
+
