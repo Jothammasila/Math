@@ -1,5 +1,4 @@
 import collections
-import sys
 from functools import lru_cache
 import numpy as np
 from gmpy2 import gmpy2
@@ -33,7 +32,7 @@ class NormalDistribution():
             • The z-scores for +3σ and –3σ are +3 and –3 respectively.\n
         The empirical rule is also known as the 68-95-99.7 rule."""
 
-        return print(self.notes)
+        return self.notes
 
     def z_prob(self):
         pass
@@ -103,3 +102,37 @@ class Combinatorics:
                 self.result *= i
                 return self.result
 
+
+def progression_constant(n, const):
+    res = int(np.multiply(n, const))
+    return res
+
+
+@lru_cache
+def progression_linear(n):
+    if isinstance(n, int):
+        res = int(np.divide(np.multiply(n, n + 1), 2))
+        return res
+
+    else:
+        raise TypeError(f'Int Type accepted only but found {type(n)}')
+
+
+@lru_cache
+def progression_squared(n):
+    if isinstance(n, int):
+        res = int(np.divide((np.multiply(np.multiply(n, n + 1), np.multiply(2, n) + 1)), 6))
+        return res
+
+    else:
+        raise TypeError(f'Int Type accepted only but found {type(n)}')
+
+
+@lru_cache
+def progression_cubed(n):
+    if isinstance(n, int):
+        res = int(np.divide(np.multiply(np.square(n), np.square(n + 1)), 4))
+        return res
+
+    else:
+        raise TypeError(f'Int Type accepted only but found {type(n)}')
