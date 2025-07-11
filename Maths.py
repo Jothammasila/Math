@@ -100,7 +100,7 @@ class Combinatorics:
             self.result = gmpy2.mpz(1)
             for i in range(1, self.n + 1):
                 self.result *= i
-                return self.result
+            return self.result
 
 
 def progression_constant(n, const):
